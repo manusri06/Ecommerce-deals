@@ -1,0 +1,45 @@
+/* Container for image and form */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
+  gap: 40px; /* optional: adds space between image and form */
+}
+
+.image-box img {
+  width: 200px;
+  height: 200px;
+}
+
+
+/* Left side image box */
+.image-box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Set image size here instead of HTML */
+.image-box img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+/* Right side form */
+.form-container {
+  flex: 1;
+  max-width: 400px;
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.form-container button:hover {
+  background-color: #0056b3;
+}

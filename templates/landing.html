@@ -1,0 +1,102 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart E-Commerce Deal Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/landing.css' %}" />
+  
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Smart Deals</div>
+    <div class="nav-links">
+      <a href="{% url 'home' %}">Home</a>
+      <a href="#">About</a>
+      <a href="{% url 'signin' %}">Sign In</a>
+      <a href="{% url 'signup' %}">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Track the Best Deals in Real Time</h1>
+    <p>Explore offers from Flipkart, Amazon, and more – all in one place.</p>
+    <div class="hero-buttons">
+      <a href="#" class="btn-primary">Explore Deals</a>
+      <a href="{% url 'signup' %}" class="btn-secondary">Sign Up for Alerts</a>
+    </div>
+  </section>
+  
+  <footer class="footer">
+  <div class="footer-container">
+    
+    <div class="footer-section brand">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="#0d9488" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14l-1.5 12H6.5L5 8z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 8V6a5 5 0 0110 0v2" />
+        </svg>
+        <h2>SmartDeals</h2>
+      </div>
+      <p>Get the best deals from your favorite e-commerce stores, all in one place.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Categories</h4>
+      <ul>
+        <li><a href="#">Electronics</a></li>
+        <li><a href="#">Fashion</a></li>
+        <li><a href="#">Home & Kitchen</a></li>
+        <li><a href="#">Beauty & Personal Care</a></li>
+        <li><a href="#">Books & Media</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><a href="#"><i class="fas fa-envelope"></i> support@smartdeals.com</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 SmartDeals. All rights reserved.</p>
+  </div>
+</footer>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,410 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Amazon Deals</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+            color: #1f2937;
+        }
+
+        nav.navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: #3b82f6;
+            user-select: none;
+        }
+
+        .main-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .main-links a {
+            text-decoration: none;
+            color: #1f2937;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .main-links a:hover {
+            color: #3b82f6;
+        }
+
+        #searchBar {
+            padding: 8px 14px;
+            font-size: 16px;
+            border-radius: 9999px;
+            border: 1.5px solid #3b82f6;
+            outline: none;
+            width: 240px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        #searchBar:focus {
+            box-shadow: 0 0 8px #3b82f6;
+        }
+
+        .category-bar {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            padding: 12px 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .category-bar a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .category-bar a:hover {
+            color: #3b82f6;
+        }
+        #allCategories {
+    padding: 32px 40px;
+}
+
+.category-section {
+    margin-bottom: 48px;
+}
+
+.category-section h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 16px;
+    border-left: 4px solid #3b82f6;
+    padding-left: 12px;
+}
+
+.row-scroller {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+}
+
+.row-scroller::-webkit-scrollbar {
+    height: 8px;
+}
+
+.row-scroller::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 4px;
+}
+
+.product-card {
+    flex: 0 0 auto;
+    width: 220px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    padding: 16px;
+    text-align: center;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    margin-bottom: 12px;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1f2937;
+    margin-bottom: 8px;
+    height: 44px;
+    overflow: hidden;
+}
+
+.price-section {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.price {
+    color: #10b981;
+    font-weight: 600;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+.discount {
+    color: #ef4444;
+    font-weight: 500;
+}
+
+.view-link {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 14px;
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+.view-link:hover {
+    text-decoration: underline;
+}
+
+.wishlist-btn {
+    margin-top: 10px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #f3f4f6;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.wishlist-btn:hover {
+    background-color: #e5e7eb;
+}
+
+.wishlist-btn.added {
+    background-color: #d1fae5;
+    color: #047857;
+    cursor: default;
+}
+
+.image-box img {
+  width: 200px;
+  height: 200px;
+}
+
+
+/* Left side image box */
+.image-box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.animated-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #3b82f6;
+  margin: 12px auto;
+  text-align: center;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+.image-box img {
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(59,130,246, 0));
+  }
+  50% {
+    transform: scale(1.07);
+    
+  }
+}
+
+
+        /* ... keep your existing styles for category-section, product-card, etc. */
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">Amazon Deals</div>
+
+    <div class="main-links">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="#">Deals</a>
+        <a href="{% url 'wishlist' %}">Wishlist</a>
+        <a href="{% url 'signout' %}">Sign Out</a>
+    </div>
+
+    <input type="text" id="searchBar" placeholder="Search products...">
+</nav>
+
+
+<!-- Category Links Below Navbar -->
+<div class="category-bar">
+    <a href="{% url 'amazonmens' %}">Men</a>
+    <a href="{% url 'amazonwomen' %}">Women</a>
+    <a href="{% url 'amazonsports' %}">Sports</a>
+    <a href="{% url 'amazonhome' %}">Home & Furniture</a>
+    <a href="{% url 'amazonelec' %}">Electronics</a>
+</div>
+
+<!-- Categories and Products Section -->
+<div id="allCategories">
+
+    {% for category, offers in grouped_offers.items %}
+    <div class="category-section" data-category="{{ category|lower }}">
+        <h2>{{ category }}</h2>
+        <div class="row-scroller">
+            {% for offer in offers %}
+            <div class="product-card" data-name="{{ offer.product_name|lower }}">
+                <img src="{{ offer.image_url }}" alt="{{ offer.product_name }}">
+                <div class="product-name">{{ offer.product_name }}</div>
+                <div class="price-section">
+                    <div class="price">{{ offer.price }}</div>
+                    <div class="original-price">{{ offer.original_price }}</div>
+                    <div class="discount">{{ offer.discount }}</div>
+                </div>
+                <a href="{{ offer.product_link }}" target="_blank" class="view-link">View</a>
+                <button class="wishlist-btn">Add to Wishlist</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+<div class="animated-text">🛒 Start shopping by selecting a category above!</div>
+
+
+<div class="image-box">
+  
+  <img src="{% static 'images/undraw_web-shopping_m3o2.svg' %}" alt="Shopping Illustration" style="width: 500px; height: 500px;" />
+</div>
+
+
+
+</div> 
+
+
+<script>
+const csrfToken = '{{ csrf_token }}';
+
+function setWishlistButtonState(button, added) {
+    if(added) {
+        button.textContent = "Added";
+        button.classList.add('added');
+        button.disabled = true;
+    } else {
+        button.textContent = "Add to Wishlist";
+        button.classList.remove('added');
+        button.disabled = false;
+    }
+}
+
+document.querySelectorAll('.wishlist-btn').forEach(button => {
+    button.addEventListener('click', async () => {
+        if(button.classList.contains('added')) return;
+
+        const card = button.closest('.product-card');
+        const productName = card.querySelector('.product-name').textContent;
+        const productLink = card.querySelector('a.view-link').href;
+        const imageUrl = card.querySelector('img').src;
+        const price = card.querySelector('.price').textContent;
+        const originalPrice = card.querySelector('.original-price').textContent;
+        const discount = card.querySelector('.discount').textContent;
+
+        try {
+            const res = await fetch("{% url 'wishlist_action' %}", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                },
+                body: JSON.stringify({
+                    action: "add",
+                    product_name: productName,
+                    product_link: productLink,
+                    image_url: imageUrl,
+                    price: price,
+                    original_price: originalPrice,
+                    discount: discount
+                })
+            });
+            const data = await res.json();
+            if(data.status === 'added' || data.status === 'exists') {
+                setWishlistButtonState(button, true);
+            } else {
+                alert("Failed to add to wishlist.");
+            }
+        } catch(e) {
+            alert("Error adding to wishlist.");
+        }
+    });
+});
+
+// 🟢 NEW SEARCH LOGIC BASED ON CATEGORY HEADING
+const searchBar = document.getElementById('searchBar');
+searchBar.addEventListener('input', () => {
+    const query = searchBar.value.toLowerCase();
+
+    document.querySelectorAll('.category-section').forEach(section => {
+        const heading = section.querySelector('h2').textContent.toLowerCase();
+        if (!query || heading.includes(query)) {
+            section.style.display = 'block';
+        } else {
+            section.style.display = 'none';
+        }
+    });
+});
+</script>
+
+
+</body>
+</html>

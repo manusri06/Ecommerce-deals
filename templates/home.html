@@ -1,0 +1,404 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>DealTracker - Home</title>
+<link
+  rel="stylesheet"
+  href="{% static 'css/home.css' %}"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<style>
+  /* Reset and base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body, html {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    position: relative;
+    overflow-x: hidden;
+  }
+  
+
+  /* Navbar with extended height for notification */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0; right: 0;
+    height: 120px; /* extended height for notif */
+    background: #ffffff;
+    backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(255 255 255 / 0.15);
+    padding: 1rem 2rem 0 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 10000;
+  }
+  .navbar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    user-select: none;
+    color: #3b82f6;
+    letter-spacing: 2px;
+  }
+  .user-greeting {
+    margin-top: 0.5rem; /* Add some space between the logo and the greeting */
+    font-size: 0.9rem; /* Adjust font size if needed */
+    color: white; /* Ensure the text color is white */
+}
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .nav-links a {
+    color: #1f2937;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1.5px solid transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    user-select: none;
+  }
+  .nav-links a:hover {
+    background: #3b82f6;
+    color: white;
+  }
+  .wishlist-btn i {
+    margin-right: 6px;
+  }
+  .logout-btn {
+    border: 1.5px solid #ef4444;
+    color: #ef4444;
+    font-weight: 700;
+  }
+  .logout-btn:hover {
+    background: #ef4444;
+    color: white;
+  }
+
+  /* Notification bar inside navbar */
+  .deal-alert-container {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .deal-alert-box {
+    background: rgba(255 255 255 / 0.15);
+    padding: 0.4rem 1.2rem;
+    border-radius: 12px;
+    backdrop-filter: saturate(180%) blur(15px);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    max-width: 500px;
+    width: 100%;
+    
+  }
+  .deal-category {
+    flex-grow: 1;
+    border-radius: 9999px;
+    padding: 0.5rem 1.25rem;
+    border: none;
+    font-weight: 700;
+    color: #1e40af;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background: white;
+    user-select: none;
+    
+  }
+  
+  .set-alert-btn {
+    background-color: #2563eb;
+    color: white;
+    padding: 0.55rem 1.6rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
+    white-space: nowrap;
+    
+  }
+  .set-alert-btn:hover {
+    background-color: #1e40af;
+  }
+  .success-message {
+    text-align: center;
+    margin-top: 6px;
+    font-size: 1rem;
+    color: #6ee7b7;
+    font-weight: 600;
+    user-select: none;
+  }
+
+  /* Hero text container below navbar */
+  .hero {
+    margin-top: 140px; /* leave space under fixed navbar */
+    text-align: center;
+    padding: 4rem 2rem 6rem;
+    user-select: none;
+  }
+  /* Animated heading text with changed color */
+  .hero h1 {
+    font-size: 3.2rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #38bdf8; /* lighter blue, bright and visible */
+    margin-bottom: 1rem;
+    min-height: 3.8rem;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Animated underline effect */
+  .hero h1::after {
+    content: '';
+    position: absolute;
+    width: 40%;
+    height: 4px;
+    background: #0ea5e9; /* bright blue underline */
+    left: 30%;
+    bottom: 0;
+    border-radius: 2px;
+    animation: underlineSlide 3s ease-in-out infinite;
+  }
+  @keyframes underlineSlide {
+    0%, 100% { left: 30%; width: 40%; }
+    50% { left: 15%; width: 70%; }
+  }
+
+  /* Typing effect styles with changed color */
+  .typing-text {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    height: 2rem;
+    color: #7dd3fc; /* soft sky blue */
+    min-height: 2rem;
+  }
+
+  /* Platform selector */
+  .platform-selector {
+    margin: 3rem auto 0;
+    text-align: center;
+  }
+  .platform-selector select {
+    font-size: 1.2rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 0 10px rgb(59 130 246 / 0.4);
+    cursor: pointer;
+    font-weight: 700;
+    background: white;
+    color: #1e40af;
+    user-select: none;
+    
+    appearance: none;
+    max-width: 320px;
+  }
+  .platform-selector select:hover, .platform-selector select:focus {
+    outline: none;
+    box-shadow: 0 0 18px #2563eb;
+  }
+
+  /* Responsive */
+  @media (max-width: 540px) {
+    .hero h1 {
+      font-size: 2.4rem;
+      min-height: 3rem;
+    }
+    .typing-text {
+      font-size: 1.2rem;
+      height: 1.6rem;
+      min-height: 1.6rem;
+    }
+    .platform-selector select {
+      max-width: 90vw;
+    }
+    .navbar {
+      height: 140px;
+      padding-bottom: 0.75rem;
+    }
+    body::before {
+      top: 140px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-top">
+    <div class="logo">
+      DealTracker
+      {% if user.is_authenticated %}
+      <span class="user-greeting">Welcome, <strong>{{ user.username }}</strong></span>
+      {% endif %}
+    </div>
+    <div class="nav-links">
+      <a href="{% url 'home' %}">Home</a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'wishlist' %}" class="wishlist-btn"><i class="fas fa-heart"></i> Wishlist</a>
+      <a href="{% url 'signout' %}" class="logout-btn">Sign Out</a>
+      {% else %}
+      <a href="{% url 'signin' %}">Sign In</a>
+      <a href="{% url 'signup' %}">Sign Up</a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if user.is_authenticated %}
+  <div class="deal-alert-container" role="region" aria-label="Set deal notification preferences">
+    <div class="deal-alert-box">
+      <select class="deal-category" id="category" aria-label="Select deal category">
+        <option disabled selected>Select a category</option>
+        <option value="mobiles">Mobiles</option>
+        <option value="laptops">Laptops</option>
+        <option value="fashion">Fashion</option>
+        <option value="home">Home</option>
+      </select>
+      <button class="set-alert-btn" id="setPreferenceBtn" aria-live="polite">Set Notification</button>
+    </div>
+    <p id="message" class="success-message" aria-live="polite"></p>
+  </div>
+  {% endif %}
+</nav>
+
+<main>
+  <section class="hero" aria-label="Welcome and deals introduction">
+    <h1>Deals Are Hidden</h1>
+    <div class="typing-text" id="typing-text"></div>
+
+    <div class="platform-selector" aria-label="Select e-commerce platform">
+      {% if user.is_authenticated %}
+      <select id="platform-select" aria-label="Select an ecommerce platform">
+        <option disabled selected>Select an e-commerce platform</option>
+        <option value="{% url 'amazon' %}">Amazon</option>
+        <option value="{% url 'flipkart' %}">Flipkart</option>
+        <option value="#"></option>
+        <option value="croma"></option>
+      </select>
+      {% endif %}
+    </div>
+  </section>
+</main>
+
+<script>
+  // Typing animation for hero text
+  const texts = [
+    "Choose your favorite e-commerce app",
+    "Find best deals effortlessly",
+    "Never miss a hot offer!",
+    "Start saving today"
+  ];
+  let textIndex = 0;
+  let charIndex = 0;
+  const typingSpeed = 100;
+  const erasingSpeed = 50;
+  const delayBetween = 2000; // pause between messages
+
+  const typingTextElem = document.getElementById('typing-text');
+
+  function type() {
+    if (charIndex < texts[textIndex].length) {
+      typingTextElem.textContent += texts[textIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(type, typingSpeed);
+    } else {
+      setTimeout(erase, delayBetween);
+    }
+  }
+  function erase() {
+    if (charIndex > 0) {
+      typingTextElem.textContent = texts[textIndex].substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(erase, erasingSpeed);
+    } else {
+      textIndex++;
+      if (textIndex >= texts.length) textIndex = 0;
+      setTimeout(type, typingSpeed + 450);
+    }
+  }
+  document.addEventListener("DOMContentLoaded", function() {
+    if(texts.length) setTimeout(type, delayBetween);
+  });
+</script>
+
+<script>
+  // CSRF helper function
+  function getCookie(name) {
+    let cookieValue = null;
+    if(document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for(let cookie of cookies) {
+        cookie = cookie.trim();
+        if(cookie.startsWith(name + '=')) {
+          cookieValue = decodeURIComponent(cookie.slice(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  document.getElementById('setPreferenceBtn')?.addEventListener('click', function() {
+    const category = document.getElementById('category').value;
+    if(!category) {
+      alert('Please select a category!');
+      return;
+    }
+
+    fetch("{% url 'set_preference' %}", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken'),
+      },
+      body: JSON.stringify({ category }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert(data.message);
+      const msg = document.getElementById('message');
+      msg.style.display = 'block';
+      msg.textContent = data.message;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Something went wrong. Try again.');
+    });
+  });
+
+  document.getElementById('platform-select')?.addEventListener('change', function() {
+    window.location.href = this.value;
+  });
+</script>
+
+</body>
+</html>
+

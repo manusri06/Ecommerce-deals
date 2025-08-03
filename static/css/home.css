@@ -1,0 +1,193 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9fafb; /* same as landing */
+  color: #1f2937; /* same as landing */
+  min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff; /* same as landing */
+  padding: 1rem 2rem;
+  border-bottom: 1px solid rgba(31, 41, 55, 0.1); /* softer border */
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+}
+
+.logo {
+  font-size: 1.6rem;
+  color: #1f2937; /* changed from #3b82f6 to landing's text color */
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.user-greeting {
+  margin-left: 1rem;
+  font-size: 0.9rem;
+  background-color: #3b82f6; /* primary blue same as landing */
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  color: #ffffff; /* white text */
+}
+
+/* Navbar links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: #1f2937; /* changed to landing text color */
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.nav-links a:hover {
+  background-color: #3b82f6; /* landing's primary blue */
+  color: #ffffff; /* white on hover */
+}
+
+.logout-btn {
+  border: 1px solid #dc2626;
+  color: #dc2626;
+}
+
+.logout-btn:hover {
+  background-color: #dc2626;
+  color: white;
+}
+
+.wishlist-btn i {
+  margin-right: 5px;
+  color: #3b82f6; /* landing primary blue */
+}
+
+/* Platform Selector */
+.platform-selector {
+  margin: 1.5rem auto;
+  text-align: center;
+}
+
+.platform-selector select {
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  background-color: #ffffff; /* white background */
+  color: #1f2937; /* landing text color */
+  border: 1px solid #d1d5db; /* light gray border from footer links */
+}
+
+.platform-selector select:focus {
+  border-color: #3b82f6; /* landing primary blue */
+  outline: none;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 3rem 1rem 1rem;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  color: #1f2937; /* landing text color */
+  margin-bottom: 1rem;
+}
+
+/* Adjust deal alert container */
+.deal-alert-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items */
+  margin: 2rem auto; /* Center horizontally */
+  width: fit-content; /* Fit to content */
+}
+
+.deal-alert-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align to left like DealTracker */
+  margin: 2rem 0 2rem 3rem; /* Push right and space from top */
+}
+
+.deal-alert-box {
+  display: flex;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  align-items: center;
+  width: fit-content;
+  min-width: unset;       
+  max-width: 100%;
+}
+
+.deal-category {
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  min-width: unset;        
+  width: auto;             
+}
+
+.deal-category {
+  min-width: 160px;  /* Reduce width */
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+.set-alert-btn {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.set-alert-btn:hover {
+  background-color: #2563eb;
+}
+
+.success-message {
+  margin-top: 0.75rem;
+  color: #16a34a;
+  font-size: 1rem;
+}
+
+
+.image-box img {
+  width: 200px;
+  height: 200px;
+}
+
+
+/* Left side image box */
+.image-box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+

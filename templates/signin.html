@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sign Up Test</title>
+<style>
+  /* Reset default margin and padding */
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+
+  /* Container for image and form side by side */
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    gap: 40px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  /* Left side image box */
+  .image-box {
+    flex: 0 0 200px; /* fixed width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-box img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Right side form container */
+  .form-container {
+    flex: 0 0 400px;
+    background-color: #fff;
+    padding: 40px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 10px;
+  }
+
+  .form-container h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .form-container form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-container input {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+
+  .form-container button {
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  .form-container button:hover {
+    background-color: #0056b3;
+  }
+
+  .form-container p {
+    margin-top: 15px;
+    font-size: 14px;
+  }
+
+  .form-container a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .form-container a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="image-box">
+    <img src="{% static 'images\undraw_skateboard_w3bz.svg' %}" alt="Photographer Illustration" style="width: 200px; height: 200px;" />
+    
+  </div>
+  <div class="form-container">
+    <h2>Sign in</h2>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Username" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Sign In</button>
+    </form>
+    <p>Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+  </div>
+</div>
+
+</body>
+</html>
+
