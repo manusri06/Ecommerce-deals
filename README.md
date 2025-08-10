@@ -1,28 +1,31 @@
- E-Commerce Deals Display App
- Overview :
- 
-This project is a Django-based web application that displays e-commerce deals stored in local files (CSV). The data is scraped beforehand (not live) from selected e-commerce websites and then presented on the webpage. Each deal includes a redirect link to the original product page.
- 
-Features :
+# 🛒 E-Commerce Deals Display App
 
- --> Reads deals from pre-scraped data files (CSV or JSON).
- 
- --> Displays deals in a clean and responsive UI.
- 
- -->  Redirects users to the original product page.
- 
- -->  Fast loading since data is read from local storage.
- 
-Tech Stack :
+A Django-based web application that displays e-commerce deals from **pre-scraped data files** (CSV/JSON).  
+The data is collected beforehand (not live scraping) and shown in a clean, responsive interface, with direct links to the original product pages.
 
---> Backend: Django (Python).
+---
 
---> Frontend: HTML, CSS, JavaScript
+## ✨ Features
+- 📂 Reads deals from **local CSV/JSON files** (scraped beforehand).
+- 🖥️ Displays deals in a **user-friendly and responsive** layout.
+- 🔗 Redirects users to the **original product page**.
+- ⚡ Fast performance as data is loaded from local files.
 
---> Data Source: Local CSV/JSON files (scraped beforehand)
+---
 
-Notes :
+## 🛠️ Tech Stack
+- **Backend:** Django (Python)  
+- **Frontend:** HTML, CSS, JavaScript  
+- **Data Source:** Local CSV/JSON files (pre-scraped)
 
---> This app does not scrape data in real-time. The scraping was done beforehand, and the results are stored in local files for display purposes.
+---
 
---> You can replace the sample CSV with your own data.
+## 📂 Project Structure
+```
+├── app/         → where your Django app files are (views, urls, models, etc.)
+├── templates/   → HTML templates for your pages
+├── static/      → CSS, JS, and images
+├── data/        → a folder to keep your sample CSV/JSON data files
+├── manage.py    → Django’s main management script
+└── README.md    → your project’s description file
+```
